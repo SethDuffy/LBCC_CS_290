@@ -1,0 +1,27 @@
+* {
+    font-family: sans-serif;
+    color: rgb(125, 125, 125);
+    background-color: rgb(33, 33, 33);
+}
+h2, p {
+   font-size: 260%;
+   letter-spacing: .06rem;
+}
+h2 {
+   margin: 8% 0 0 14%;
+}
+p {
+    margin: 1% 0 0 14%;
+}
+ul {
+    margin: 2.5% 0 0 12%;
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+    font-size: 570%;
+    color: rgb(200, 200, 200);
+}
+a:hover {
+    color: rgb(165, 165, 165);
+}

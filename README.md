@@ -4,4 +4,4 @@ This Read me is used for planend additions and previous fixes
 ** == task completed.
 
 1/10/19:
-build the site.
+fix margin issues

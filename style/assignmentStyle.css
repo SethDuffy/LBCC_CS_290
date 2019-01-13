@@ -2,13 +2,7 @@
     background-color: rgb(33, 33, 33);
 }
 img {
-    height: auto;
-    max-width: 32%;
-    min-width: 200px;
-    margin-left: calc(10px + .35%);
-    margin-right: calc(10px + .35%)
-    margin
-    
+    border-radius: 4%;
 }
 img:hover {
     opacity: .55;

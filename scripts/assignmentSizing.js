@@ -1,28 +1,27 @@
 //Seth Duffy CS 290
-//Javascript file focusing on
+//Javascript file focusing on the assignment pages sizing
 
-//Grabs the current windows height and width
-var sWidth = window.screen.width;
+//Gets all img tags and stores them in an array
 var images = document.getElementsByTagName('img');
-//changes pending
-for(var i = 0; i < images.length; i++) {
-    if(sWidth < 500){
-        images[i].style.maxWidth = "95%";
+//gets screen width
+var sWidth = window.screen.width;
+
+if(sWidth < 500){
+    setSize(95, .5, 2.3, .5, 2.3);
+}
+else if (sWidth <= 807) {
+    setSize(47, .5, 1.3, .5, 1.3);
+}
+else {
+    setSize(31, .3, 1, .3, 1);
+}
+function setSize(maxWidthPercent, marginTop, marginLeft, marginBottom, marginRight){
+    for(var i = 0; i < images.length; i++){
+        images[i].style.maxWidth = (maxWidthPercent + "%");
         images[i].style.maxHeight = "auto";
-        images[i].style.margin = ".5% 2.3% .5% 2.3%"; 
-    }
-    else if (sWidth <= 807) {
-        images[i].style.maxWidth = "47%";
-        images[i].style.maxHeight = "auto";
-        images[i].style.margin = ".5% 1.3% .5% 1.3%"; 
-    }
-    else {
-        images[i].style.maxWidth = "31%";
-        images[i].style.maxHeight = "auto";
-        images[i].style.margin = ".3% 1% .3% 1%"; 
+        images[i].style.margin = (marginTop + "% " + marginLeft + "% " + marginBottom + "% " + marginRight + "%"); 
     }
 }
-
 /*function cssCreate(cssFileLocation) {
     var oldFile = document.getElementsByTagName("link").item(0);
     var newFile = document.createElement("link");

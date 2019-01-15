@@ -13,9 +13,11 @@ else if (sWidth <= 807) {
     setSize(47, .5, 1.3, .5, 1.3);
 }
 else {
-    setSize(31, .3, 1, .3, 1);
+    setSize(31, .5, 1, .5, 1);
 }
+// sets the size all of thee img tags based on the screen size of the browser that opens it
 function setSize(maxWidthPercent, marginTop, marginLeft, marginBottom, marginRight){
+    
     for(var i = 0; i < images.length; i++){
         images[i].style.maxWidth = (maxWidthPercent + "%");
         images[i].style.maxHeight = "auto";

@@ -1,0 +1,19 @@
+h1{
+    color: rgb(135, 135, 135);
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-align: center;
+}
+p {
+    color: rgb(180, 180, 180);
+    text-align: center;
+}
+a {
+    color: rgb(130, 130, 130);
+    text-decoration: none;
+}
+a:hover {
+    color: rgb(140, 140, 140);
+}
+a:visited {
+    color: rgb(120, 120, 120);
+}

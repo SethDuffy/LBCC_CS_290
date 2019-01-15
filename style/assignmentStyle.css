@@ -3,7 +3,17 @@
 }
 img {
     border-radius: 4%;
+    position: relative;
 }
 img:hover {
     opacity: .55;
+}
+.backarrow:hover{
+    color: rgb(100, 100, 100)
+}
+p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

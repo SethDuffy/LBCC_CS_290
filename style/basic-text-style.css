@@ -17,3 +17,11 @@ a:hover {
 a:visited {
     color: rgb(120, 120, 120);
 }
+ul {
+    text-align: center;
+    list-style-type: none;
+}
+header {
+    text-align: center;
+    margin-left: 2%;
+}

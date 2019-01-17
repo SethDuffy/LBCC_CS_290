@@ -1,0 +1,22 @@
+body {
+    margin: 0 30% 0 30%;
+    background-color: navajowhite;
+    font-family: helvetica;
+}
+p {
+    color: rgb(35, 35, 35);
+}
+img {
+    width: 80%;
+    height: auto;
+}
+.caption {
+    color: rgb(0, 0, 0);
+    font-style: oblique;
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    
+}

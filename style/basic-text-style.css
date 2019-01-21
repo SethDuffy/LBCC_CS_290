@@ -29,6 +29,7 @@ header {
     text-align: center;
     margin-left: 5%;
 }
+/*Removes margin on smaller screens and slightly lowers font size*/
 @media screen and (max-width: 750px){
     p {
         font-size: 100%;

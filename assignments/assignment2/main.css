@@ -1,0 +1,49 @@
+body {
+    background-color: rgb(210, 210, 240);
+    font-family: sans-serif;
+}
+h1, h2 {
+    color: rgb(30, 30, 40);
+    text-shadow: none;
+}
+P, ul {
+    color: rgb(50, 50, 60);
+}
+ul {
+    text-align: left;
+}
+a {
+    color: rgb(100, 100, 220);
+}
+a:hover {
+    color: rgb(75, 75, 195);
+}
+a:visited {
+    color: darkblue;
+}
+#stack {
+    width: 100%;
+    height: auto;
+    margin-left: 15%;
+}
+#flicker {
+    margin-left: 35%;
+    margin-right: 40%;
+}
+.cases {
+    font-weight: 700;
+}
+.question {
+    font-style: oblique;
+}
+@media screen and (max-width: 1200px){
+    #stack {
+        margin-left: 22%;
+    }
+}
+@media screen and (max-width: 500px){
+    #flicker {
+        margin-left: 30%;
+        margin-right: 0%;
+    }
+}

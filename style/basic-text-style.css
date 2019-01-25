@@ -24,6 +24,10 @@ a:visited {
 ul {
     text-align: center;
     list-style-type: none;
+    padding: 0 0 0 0;
+}
+li {
+        text-align: justify;
 }
 header {
     text-align: center;
@@ -36,6 +40,10 @@ header {
     }
     body{
         margin: 0 1% 0 1%;
+        font-size: 100%;
+    }
+    ul{
+        margin 0 0 0 0;
         font-size: 100%;
     }
 }

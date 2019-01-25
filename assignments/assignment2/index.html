@@ -2,18 +2,107 @@
 <html lang="en">
     
 <head>
-    
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>The Stack</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../style/basic-text-style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
 </head>
 
 <body>
     
-    <picture>
-        <source media="min-width: 500px" srcset="image.png">
-        <source media="min-width: 500px" srcset="image.png">
-        <source media="min-width: 500px" srcset="image.png">
-        <img src="image.png" alt="????" style="width:auto">
+    <h1>
+        The Stack
+    </h1>
+    
+    <h2>
+        What is The Stack?
+    </h2>
+    <p>
+        The Stack refers to an Magic the Gathering (MTG) ruleset detailing the way in which spells interact when cast.
+    </p>
+    
+    <h2>
+        How does The Stack work?
+    </h2>
+    
+    <picture id="stack">
+        <source media="(max-width: 450px)" srcset="images/stack-400px.png">
+        <source media="(max-width: 1200px)" srcset="images/stack-500px.png">
+        <img src="images/stack.png" alt="Picture of a stack from Computer Science">
     </picture>
     
+    <p>
+        Similar to the stacks in computer science MTGs stack operates in a last in, first out policy. This is most simply explained by one of magic's most iconic interactions. To set the stage, you're in the finals of a grand prix. You attempt to 
+        <a href="http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=442130">
+            Lightning Bolt
+        </a>
+        
+        your opponents 
+        <a href="http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=129586">
+            Grizzly Bears
+        </a>
+        to kill them. Then, out of nowhere they cast 
+        <a href="http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=447132">
+            CounterSpell
+        </a>
+        , countering your Lightning Bolt. Now let's see how this interaction worked. First, you casted Lightning Bolt and Lightning Bolt was placed on the stack; then, you passed priority to your opponent. Your opponent casted CounterSpell targeting your Lightning Bolt and his CounterSpell was placed on the stack after yours. Following the last in, first out method we find that the first action to occur once both players relieve priority is the CounterSpell going off. Once the CounterSpell has successfully resolved, your Lightning Bolt is countered, meaning it will no longer kill their Grizzly Bears, and it will subsequently be sent to your graveyard. This interaction is fairly simple and straight-forward, but the stack can easily become extremely confusing.
+    </p>
+    
+    <h2>
+        Slightly More Confusing Cases
+    </h2>
+    <ul>
+        
+        
+        
+        <li class="cases">
+            Case 1:
+        </li>
+        <li class="question">
+            <br>
+            You're at three life. You cast Healing Salve on yourself to gain three life, in response your opponent casts Lightning Bolt targeting you. What happens?
+        </li>
+        <li>
+            <br>
+            In this scenario Lightning Bolt is the last card to go onto the stack. So following our last in, first out rule, we know that the Lightning Bolt will resolve first dealing three damage to you and reducing your life to zero. Once state-based effects are checked after the spells resolutuion, you lose the game.
+        </li>
+        
+        
+        
+        <li class="cases">
+            <br>
+            Case 2:
+        </li>
+        <li class="question">
+            <br>
+            You cast 
+            <a href="http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=447246">
+                Murder
+            </a>
+            on an opponents Grizzly Bears. In response your opponent casts 
+            <a href="http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=15127">
+                Flicker
+            </a>
+            onto their Grizzly Bears causing them to be removed the game, then immediately placed back onto the battlefield. What happens?
+        </li>
+        
+        <li>
+            <picture id="flicker">
+                <source media="(max-width: 650px)" srcset="images/flicker-500px.jpg">
+                <img src="images/flicker.jpg" alt="Flicker: Remove target nontoken permanent from the game, the return it to play." style="width:auto;">
+            </picture>
+        </li>
+        
+        <li>    
+            <br>
+            This is a scenario that doesn't have the most intuitive result. When they cast Flicker after your Murder, they're Grizzly Bears immediately leaves the battlefield, then returns. Then the murder goes to resolve. Intuitively we would think that when the murder resolves next, the Grizzly Bears would die. Instead the Grizzly Bears don't die to the Murder because when they return to the battlefield after leaving, they are treated as a completely different permenant that the Murder no longer recognizes as it's target. Thus the Murder fizzles and just moves straight to your graveyard.
+        </li>
+        
+        
+        
+    </ul>
 </body>    
     
 </html>

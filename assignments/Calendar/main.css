@@ -1,0 +1,36 @@
+body {
+    width: 1400px;
+    height: auto;
+    margin: 0 1px 0 1px;
+    background-color: rgb(230, 230, 230);
+    color: #515151;
+
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th{
+    padding: 1% 6% 1% 6%;
+    text-align: center;
+}
+td {
+    width: 14%;
+    text-align: justify;
+}
+td, th {
+    border-right: 1px solid #5588BB;
+}
+.notJan {
+    background-color: #A1A1A1;
+}
+.day {
+    border: none;
+}
+tr:nth-child(even) {
+    background-color: #5588BB;
+}
+caption {
+    font-size: 150%;
+}

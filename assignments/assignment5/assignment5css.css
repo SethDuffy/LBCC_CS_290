@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;
+}
+h2 {
+    font-size: 200%;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+
+.header {
+    padding: 3%;
+    text-align: center;
+    background: #ff8b8b;
+    color: #F0F0F0;
+}
+
+
+.navbar {
+    background-color: #363636;
+    display: flex;
+}
+
+.navbar a {
+    color: #fefefe;
+    text-decoration: none;
+    text-align: left;
+    padding: 10px;
+}
+
+.navbar a:hover {
+    background-color: #dedede;
+    color: #202020;
+}
+
+.flex-container {  
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sidebar {
+    flex: 15%;
+    background-color: #ff6666;
+    padding: 20px;
+}
+
+.maincontent {
+    flex: 70%;
+    background-color: #bb3636;
+    padding: 20px;
+}
+
+.footer {
+    padding: 20px;
+    text-align: center;
+    background: #cc0404;
+}
+
+/*will change the direction of the webiste on screens under 850 pixels*/
+@media screen and (max-width: 850px) {
+    .flex-container, .navbar {   
+        flex-direction: column;
+    }
+}

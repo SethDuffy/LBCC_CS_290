@@ -1,0 +1,21 @@
+body {
+    max-width: 1400px;
+    height: auto;
+    margin: 0 1px 0 1px;
+    background-color: rgb(230, 230, 230);
+    color: #515151;
+}
+.outOfMonth {
+    background-color: #A1A1A1;
+}
+.week {
+    display:grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 5px;
+}
+.dayHead {
+    background-color: #5588BB;
+}
+h1 {
+    text-align: center;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>The Stack</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../style/basic-text-style.css">
+    <style>
+        body {
+            background-color: cadetblue;
+        }
+        .chart div {
+            background-color: aqua;
+            margin: 1px;
+            padding 3px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bar Chart Using D3</h1>
+
+    <div class="chart">
+    </div>
+<script src="d3.js"></script>
+<script>
+    var data = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+    d3.select(".chart")
+      .selectAll("div")
+      .data(data)
+        .enter()
+        .append("div")
+        .style("width", function(d) { return d * 10 + "px"; })
+        .text(function(d) { return d + '%'; });
+</script>
+
+</body>

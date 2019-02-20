@@ -1,11 +1,28 @@
-const button = document.getElementById("todoButton");
-const ul = document.getElementsByTagName("ul");
-button.onclick = addItem();
-var listNumber = 0;
 
-function addItem(){
-    button.style.color = "#0a3fa0";
-    const textField = document.getElementById("textField")
-    ul.createElement("li"["words"]);
-    document.getElementsByTagName("li")
+function addItem() {
+    if(document.getElementById("textField").value != ""){
+        const button = document.getElementById("todoButton");
+        const ol = document.getElementsByTagName("ol");
+
+        let words = document.getElementById("textField").value;
+        document.getElementById("textField").value = "";
+        const liNode = document.createElement("li");
+
+        liNode.appendChild(document.createTextNode(words));
+
+
+
+
+        ol[0].appendChild(liNode);
+    }
 }
+
+function removeItem(){
+    let num = document.getElementById("removeField").value;
+    if(num != ""){
+        const li = document.getElementsByTagName("li");
+        li[parseInt(num)-1].parentNode.removeChild(li[parseInt(num)-1])
+        document.getElementById("removeField").value = "";
+    }
+}
+

@@ -10,9 +10,6 @@ function addItem() {
 
         liNode.appendChild(document.createTextNode(words));
 
-
-
-
         ol[0].appendChild(liNode);
     }
 }

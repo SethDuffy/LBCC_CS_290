@@ -26,6 +26,8 @@ function keyUpHandler(e) {
 }
 
 let bullArr = [];
+let enemyArr = [];
+
 var player = {
     x: surf.width/2,
     y: surf.height-30,
@@ -34,40 +36,106 @@ var player = {
     width: 25,
     height: 15
 };
-function bullet(){
-    this.x = player.x+player.width/2;
+
+function enemy(x, y) {
+    this.w = 20;
+    this.h = 20;
+    this.x = x;
+    this.y = y;
+    this.dx = 1;
+    this.dy = 1;
+}
+window.onload = function() {
+    let tempx = 6;
+    let tempy = 5;
+    
+    for(var i = 0; i < 96; i++){
+        if((i % 16 == 0) && i != 0){ 
+            tempy += 30;
+            tempx = 5;
+        }
+        let ene = new enemy(tempx, tempy);
+        enemyArr.push(ene);
+        tempx += enemyArr[0].w + 10;
+    }
+}
+
+
+function bullet(x){
+    this.w = 2;
+    this.h = 9;
+    this.x = x+((player.width/2)-(this.w/2));
     this.y = surf.height-30;
     this.dy = 5;
-    this.w = 2;
-    this.h = 5;
+
 }
+
+
 
 function drawPlayer(){
     ctx.beginPath();
     player.x = clamp(player.x, surf.width-player.width, 0);
     ctx.rect(player.x, player.y, player.width, player.height);
-    ctx.strokeStyle = "rgba(0, 0, 255, 0.5)";
+    ctx.strokeStyle = "rgba(0, 0, 255, 0.7)";
     ctx.stroke();
     ctx.closePath();
 }
+//draws the border for all bullets
 function drawBullets(){
-    for(let i = 0; i < bullArr.length-1; i++){
+    for(let i = 0; i < bullArr.length; i++){
         ctx.beginPath();
-        ctx.rect(bullArr[i].x, bullArr[i].y, 5, 10);
+        ctx.rect(bullArr[i].x, bullArr[i].y, bullArr[i].w, bullArr[i].h);
         ctx.strokeStyle = "rgba(125, 125, 125, 0.7)";
         ctx.stroke();
         ctx.closePath();
     }
 }
+
+function drawEnemies(){
+    for(let i = 0; i < enemyArr.length; i++){
+        ctx.beginPath();
+        ctx.rect(enemyArr[i].x, enemyArr[i].y, enemyArr[i].w, enemyArr[i].h);
+        ctx.strokeStyle = "rgba(148, 0, 211, 0.7)";
+        ctx.stroke();
+        ctx.closePath();
+    }
+}
+
+function drawScore(){
+    ctx.beginPath();
+    ctx.font = "30px sans-serif";
+    ctx.fillStyle = "rgba(20, 20, 20, .4)"
+    ctx.fillText("Score: " + player.score, surf.width-150, surf.height-20);
+    ctx.closePath();
+}
+//function moveEnemies(){
+    
+//}
+//steps through movement for all bullets and the player
 function move(){
     if(rightPressed) player.x+=player.dx;
     if(leftPressed) player.x-=player.dx;
-    for(let i = 0; i < bullArr.length-1; i++){
+    for(let i = 0; i < bullArr.length; i++){
         bullArr[i].y -= bullArr[i].dy;
         if(bullArr[i].y < 0){
             bullArr.shift();
         }
 
+    }
+}
+function collision(){
+    for(var i = 0; i < bullArr.length; i++){
+        for(var k = 0; k < enemyArr.length; k++){
+            if (bullArr[i].x < enemyArr[k].x + enemyArr[k].w &&
+                bullArr[i].x + bullArr[i].w > enemyArr[k].x &&
+                bullArr[i].y < enemyArr[k].y + enemyArr[k].h &&
+                bullArr[i].y + bullArr[i].h > enemyArr[k].y) {
+                
+                bullArr.splice(i, 1);
+                enemyArr.splice(k, 1);
+                player.score += 10;
+            }
+        }
     }
 }
 
@@ -80,29 +148,24 @@ function clamp(currVal, topVal, bottomVal){
         returnVal = bottomVal;
     return returnVal;
 }
+//creates a bullet object and pushes it onto the end of the bullArr
 function createBullet(){
-    let bull = new bullet();
+    let bull = new bullet(player.x);
     bullArr.push(bull);
 }
-setInterval(createBullet, 100);
+setInterval(createBullet, 300);
 
+//loops the logic and redraws boxes
 function mainLoop() {
     ctx.clearRect(0, 0, surf.width, surf.height);
-    drawBullets();
     move();
+    collision();
+    drawBullets();
+    drawEnemies();
+    drawScore();
     drawPlayer();
-
 }
 setInterval(mainLoop, 20);
-
-
-
-
-
-
-
-
-
 
 
 

@@ -31,42 +31,47 @@ let enemyArr = [];
 var player = {
     x: surf.width/2,
     y: surf.height-30,
-    dx: 5,
+    dx: 4,
     score: 0,
     width: 25,
     height: 15
 };
 
-function enemy(x, y) {
+function enemy(x, y, color) {
     this.w = 20;
     this.h = 20;
     this.x = x;
     this.y = y;
     this.dx = 1;
     this.dy = 1;
+    this.color = color;
 }
 window.onload = function() {
-    let tempx = 6;
-    let tempy = 5;
-    
+    let tempX = 6;
+    let tempY = 5;
+    let greenVar = 0;
+    let redVar = 255
+
     for(var i = 0; i < 96; i++){
-        if((i % 16 == 0) && i != 0){ 
-            tempy += 30;
-            tempx = 5;
+        if((i % 16 == 0) && i != 0){
+            tempY += 30;
+            tempX = 5;
+            greenVar += 255/6;
+            redVar -= 255/6;
         }
-        let ene = new enemy(tempx, tempy);
+        let ene = new enemy(tempX, tempY, `rgba(${redVar}, ${greenVar}, 0, 0.9)`);
         enemyArr.push(ene);
-        tempx += enemyArr[0].w + 10;
+        tempX += enemyArr[0].w + 10;
     }
 }
 
 
 function bullet(x){
-    this.w = 2;
-    this.h = 9;
+    this.w = 3;
+    this.h = 11;
     this.x = x+((player.width/2)-(this.w/2));
     this.y = surf.height-30;
-    this.dy = 5;
+    this.dy = 4;
 
 }
 
@@ -95,7 +100,7 @@ function drawEnemies(){
     for(let i = 0; i < enemyArr.length; i++){
         ctx.beginPath();
         ctx.rect(enemyArr[i].x, enemyArr[i].y, enemyArr[i].w, enemyArr[i].h);
-        ctx.strokeStyle = "rgba(148, 0, 211, 0.7)";
+        ctx.strokeStyle = enemyArr[i].color;
         ctx.stroke();
         ctx.closePath();
     }
@@ -109,7 +114,7 @@ function drawScore(){
     ctx.closePath();
 }
 //function moveEnemies(){
-    
+
 //}
 //steps through movement for all bullets and the player
 function move(){
@@ -130,7 +135,7 @@ function collision(){
                 bullArr[i].x + bullArr[i].w > enemyArr[k].x &&
                 bullArr[i].y < enemyArr[k].y + enemyArr[k].h &&
                 bullArr[i].y + bullArr[i].h > enemyArr[k].y) {
-                
+
                 bullArr.splice(i, 1);
                 enemyArr.splice(k, 1);
                 player.score += 10;
@@ -153,7 +158,7 @@ function createBullet(){
     let bull = new bullet(player.x);
     bullArr.push(bull);
 }
-setInterval(createBullet, 300);
+setInterval(createBullet, 400);
 
 //loops the logic and redraws boxes
 function mainLoop() {
@@ -165,7 +170,7 @@ function mainLoop() {
     drawScore();
     drawPlayer();
 }
-setInterval(mainLoop, 20);
+setInterval(mainLoop, 15);
 
 
 

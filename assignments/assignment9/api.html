@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Where's Linn-Benton</title>
+    <style>
+      #map {
+        width: 1000px;
+        height: 768px;
+      }
+    </style>
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+    <script>
+        var L;
+        window.onload = function() {
+            L.mapquest.key = 'FUmGkA8Artj9QUAYAn3tVgGxs3TkqGJK';
+
+
+            var map = L.mapquest.map('map', {
+                    //determines coordinates
+                    center: [44.586979,  -123.115198],
+                    layers: L.mapquest.tileLayer('map'),
+                    zoom: 16
+            });
+             L.marker([44.586979, -123.115198], {
+                icon: L.mapquest.icons.marker({
+                    primaryColor: '#ff66bb',
+                    secondaryColor: '#fabbab',
+                    shadow: true,
+                    size: 'md',
+                    symbol: 'L'
+                })
+            }).bindPopup('Linn-Benton Community College').addTo(map);
+        }
+    </script>
+  </head>
+  <body>
+    <h1>Where's Linn-Benton?</h1>
+
+    <div id="map"></div>
+  </body>
+</html>

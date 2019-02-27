@@ -27,61 +27,70 @@ function keyUpHandler(e) {
 
 let bullArr = [];
 let enemyArr = [];
-
-var player = {
-    x: surf.width/2,
-    y: surf.height-30,
-    dx: 4,
-    score: 0,
-    width: 25,
-    height: 15
-};
-
-function enemy(x, y, color) {
-    this.w = 20;
-    this.h = 20;
+function rectObj(x, y, w, h, color) {
     this.x = x;
     this.y = y;
-    this.dx = 1;
-    this.dy = 1;
+    this.w = w;
+    this.h = h;
     this.color = color;
 }
+
+function playerMaker() {
+    rectObj.call(this, surf.width/2, surf.height-30, 25, 15, "rgba(0, 0, 255, 0.7)");
+    
+    this.dx = 4;
+    this.score = 0;
+}
+let player = new playerMaker();
+
+function bulletMaker(x){
+    rectObj.call(this, (x+((player.w/2)-(5/2))), surf.height-30, 5, 19, "rgba(125, 125, 125, 0.7)")
+    
+    this.dy = 4;
+
+}
+function enemyMaker(x, y, color) {
+    rectObj.call(this, x, y, 20, 20, color);
+
+    this.dx = 1;
+    this.dy = 1;
+}
+
+//function enemy(x, y, color) {
+//    this.w = 20;
+//    this.h = 20;
+//    this.x = x;
+//    this.y = y;
+//    this.dx = 1;
+//    this.dy = 1;
+//    this.color = color;
+//}
 window.onload = function() {
     let tempX = 6;
     let tempY = 5;
     let greenVar = 0;
-    let redVar = 255
+    let redVar = 255;
 
     for(var i = 0; i < 96; i++){
         if((i % 16 == 0) && i != 0){
             tempY += 30;
-            tempX = 5;
+            tempX = 6;
             greenVar += 255/6;
             redVar -= 255/6;
         }
-        let ene = new enemy(tempX, tempY, `rgba(${redVar}, ${greenVar}, 0, 0.9)`);
-        enemyArr.push(ene);
+//        let ene = new enemyMaker(tempX, tempY, `rgba(${redVar}, ${greenVar}, 0, 0.9)`);
+        enemyArr.push(new enemyMaker(tempX, tempY, `rgba(${redVar}, ${greenVar}, 0, 0.9)`));
         tempX += enemyArr[0].w + 10;
     }
-}
-
-
-function bullet(x){
-    this.w = 3;
-    this.h = 11;
-    this.x = x+((player.width/2)-(this.w/2));
-    this.y = surf.height-30;
-    this.dy = 4;
-
 }
 
 
 
 function drawPlayer(){
     ctx.beginPath();
-    player.x = clamp(player.x, surf.width-player.width, 0);
-    ctx.rect(player.x, player.y, player.width, player.height);
-    ctx.strokeStyle = "rgba(0, 0, 255, 0.7)";
+    player.x = clamp(player.x, surf.width-player.w, 0);
+    ctx.rect(player.x, player.y, player.w, player.h);
+    ctx.strokeStyle = player.color;
     ctx.stroke();
     ctx.closePath();
 }
@@ -90,7 +99,7 @@ function drawBullets(){
     for(let i = 0; i < bullArr.length; i++){
         ctx.beginPath();
         ctx.rect(bullArr[i].x, bullArr[i].y, bullArr[i].w, bullArr[i].h);
-        ctx.strokeStyle = "rgba(125, 125, 125, 0.7)";
+        ctx.strokeStyle = bullArr[i].color;
         ctx.stroke();
         ctx.closePath();
     }
@@ -110,7 +119,7 @@ function drawScore(){
     ctx.beginPath();
     ctx.font = "30px sans-serif";
     ctx.fillStyle = "rgba(20, 20, 20, .4)"
-    ctx.fillText("Score: " + player.score, surf.width-150, surf.height-20);
+    ctx.fillText("Score: " + player.score, surf.width-surf.width, surf.height-20);
     ctx.closePath();
 }
 //function moveEnemies(){
@@ -131,14 +140,14 @@ function move(){
 function collision(){
     for(var i = 0; i < bullArr.length; i++){
         for(var k = 0; k < enemyArr.length; k++){
-            if (bullArr[i].x < enemyArr[k].x + enemyArr[k].w &&
-                bullArr[i].x + bullArr[i].w > enemyArr[k].x &&
-                bullArr[i].y < enemyArr[k].y + enemyArr[k].h &&
-                bullArr[i].y + bullArr[i].h > enemyArr[k].y) {
+            if (bullArr[i].x-1 < enemyArr[k].x + enemyArr[k].w+1 &&
+                bullArr[i].x + bullArr[i].w+1 > enemyArr[k].x-1 &&
+                bullArr[i].y-1 < 1 + enemyArr[k].y + enemyArr[k].h &&
+                1 + bullArr[i].y + bullArr[i].h > enemyArr[k].y - 1) {
 
                 bullArr.splice(i, 1);
                 enemyArr.splice(k, 1);
-                player.score += 10;
+                player.score += 15;
             }
         }
     }
@@ -155,8 +164,7 @@ function clamp(currVal, topVal, bottomVal){
 }
 //creates a bullet object and pushes it onto the end of the bullArr
 function createBullet(){
-    let bull = new bullet(player.x);
-    bullArr.push(bull);
+    bullArr.push(new bulletMaker(player.x));
 }
 setInterval(createBullet, 400);
 

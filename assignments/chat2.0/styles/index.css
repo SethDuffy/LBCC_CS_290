@@ -1,0 +1,24 @@
+  .outer{
+        width: 900px;
+        margin: auto;
+    }
+    .room{
+        width: 400px;
+        margin: 5px;
+        float: left;
+      
+      
+    }
+    .messages{
+        width: 390px;
+        margin:5px;
+        height: 600px;
+        background-color: aqua;
+    }
+    .txt-send{
+        width: 300px;
+        margin:5px;
+    }
+    body{
+        align-content: center;
+    }

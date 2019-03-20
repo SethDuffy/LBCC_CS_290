@@ -1,0 +1,97 @@
+
+
+
+<!-- I struggled heavily to get anything to work properly. 
+The css file when linked would give me an error which I could not find a soulution for and
+the javascript file being linked externally just wouldn't work 
+sorry fo the inconvenience-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat</title>
+    <style>
+        .outer{
+            width: 1600px;
+            height: 960px;
+            margin: 4% 1% 1% 4%;
+        }
+        .room{
+            width: 1600px;
+            margin: 5px;
+            float: left;
+            height: auto;
+        
+        }
+        #Messages{
+            width: 1600px;
+            margin:5px;
+            height: auto;
+            background-color: #f4976c;
+            border-radius: 3px;
+        }
+        #text {
+            width: 300px;
+            margin:5px;
+            border-radius: 5px;
+            background-color: #b4dfe5;
+        }
+        #button {
+            border: none;
+        }
+        body{
+            background-color: #fbe8a6;
+            align-content: center;
+            margin: 0 0 0 0;
+        }
+        @media screen and (min-width: 1400px) {
+
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="room">
+            <h1>WELCOME TO THE CHAT</h1>
+            <div id="Messages"></div>
+            <form>
+                <input type="text" name="" id="text">
+                <input type="button" value="Send" id="button">
+            </form>
+        </div>
+       
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+
+        socket.on("connect", function(){
+            var chatRoom = "chatRoom";
+            socket.emit('chatRoom', chatRoom);
+
+        });
+
+        
+        var button = document.getElementById("button");
+        var text = document.getElementById("text");
+        var Messages = document.getElementById("Messages");
+        
+
+        button.addEventListener("click", () => {
+            socket.emit("new message", text.value);
+        });
+        socket.on("news", (data) => {
+            Messages.innerHTML = Messages.innerHTML + "<br>" + data;
+        });
+        socket.on("new user", (data) => {
+            Messages.innerHTML = Messages.innerHTML + "<br>" + data;
+        });
+
+    
+    </script>
+</body>
+</html>

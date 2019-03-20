@@ -6,7 +6,7 @@ const io = socketio(server);
 const path = require("path");
 const randomWords = require('random-words');
 
-var users = {};
+let users = {};
 
 app.get('/', (req, res) =>{
     res.sendFile(path.join(__dirname, "/index.html"));
